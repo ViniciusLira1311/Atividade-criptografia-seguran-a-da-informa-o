@@ -93,7 +93,7 @@ class CriptoApp:
             resultado = func(texto, chave)
             self.definir_texto_destino(resultado)
         except Exception as e:
-            messagebox.showerror("Erro", f"{operacao}: {str(e)}")
+            messagebox.showerror("Erro", f"{str(e)}")
 
     def criptografar(self):
         self._executar("criptografar")
