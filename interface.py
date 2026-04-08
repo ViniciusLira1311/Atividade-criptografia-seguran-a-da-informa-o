@@ -38,6 +38,7 @@ class CriptoApp:
         ttk.Label(self.frame_chave, text="Chave:").pack(side=tk.LEFT, padx=(0,5))
         self.entry_chave = ttk.Entry(self.frame_chave, textvariable=self.chave_var, width=10)
         self.entry_chave.pack(side=tk.LEFT)
+        ttk.Button(self.frame_chave, text="Gerar chave aleatória", command=self.gerar).pack(side=tk.LEFT, padx=5)
 
         # Botões
         btn_frame = ttk.Frame(main_frame)
@@ -90,7 +91,7 @@ class CriptoApp:
             if not func:
                 messagebox.showerror("Erro", f"Função '{operacao}' não encontrada em {modulo_nome}.")
                 return
-            resultado = func(texto, chave)
+            resultado = func() if operacao == "gerar" else func(texto, chave)
             self.definir_texto_destino(resultado)
         except Exception as e:
             messagebox.showerror("Erro", f"{str(e)}")
@@ -100,6 +101,9 @@ class CriptoApp:
 
     def descriptografar(self):
         self._executar("descriptografar")
+
+    def gerar(self):
+        self._executar("gerar")
 
     def limpar(self):
         self.texto_entrada.delete("1.0", tk.END)
