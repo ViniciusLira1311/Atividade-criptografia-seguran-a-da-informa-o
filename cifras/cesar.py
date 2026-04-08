@@ -11,16 +11,20 @@ def _cesar(texto, chave):
             resultado.append(char)
     return ''.join(resultado)
 
-def criptografar(texto, chave):
+def criptografar(texto, chave): 
     try:
         desloc = int(chave)
+        if desloc <1 or desloc >26:
+            raise ValueError
     except ValueError:
-        raise ValueError("A chave para a cifra de cesar precisa ser um número inteiro.")
-    return _cesar(texto, desloc)
+        raise ValueError("A chave para a cifra de César precisa ser um número inteiro entre 1 e 25.")
+    return _cesar(texto, desloc)        
 
 def descriptografar(texto, chave):
     try:
         desloc = int(chave)
+        if desloc <1 or desloc >26:
+            raise ValueError
     except ValueError:
-        raise ValueError("A chave para a cifra de cesar precisa ser um número inteiro.")
+        raise ValueError("A chave para a cifra de César precisa ser um número inteiro entre 1 e 25.")
     return _cesar(texto, -desloc)
